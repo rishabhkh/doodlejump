@@ -16,28 +16,21 @@ public class Platform extends Actor
     
     private int initialy;
     private boolean isFirstFlag = true;
-    
+    int speed;
   
     public void act() 
     {   
-       Background background = (Background)getWorld(); 
-       if(isFirstFlag)
-       {
-           initialy = getY();
-           isFirstFlag = false;           
-       }
-                      
-        
-        if(background.jumper.upFlag && (background.jumper.getY()<CUT_OFF))
+        Jumper jumper = ((Background)getWorld()).jumper;
+        if(jumper.hold&&jumper.speed>=0)
         {
-            int diff = CUT_OFF-background.jumper.getY();
-            setLocation(getX(),initialy+diff);      
-        }   
-        else
-            initialy=getY();
-        
+            setLocation(getX(),getY()+jumper.speed);
+        }
         if(isAtEdge())
             getWorld().removeObject(this);
+        
+        
+        
+        
         
     }
         

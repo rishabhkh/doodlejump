@@ -20,25 +20,15 @@ public class Background extends World
     public Background()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(800, 600, 1); 
+        super(800, 500, 1); 
 
         prepare();
     }
 
     public void act()
     {
-        if(jumper.upFlag && (jumper.getY()<Platform.CUT_OFF))
-        {
-            //if(justCrossed)
-           // { 
-               //if(Greenfoot.getRandomNumber(100)<50)
-               //createPlatforms(4);
-             //   justCrossed = false;
-          //  }
-        }       
-     //   else
-       //     justCrossed = true;
-      
+        if(jumper.hold&&(Greenfoot.getRandomNumber(100)<10))
+            createPlatforms(2);
     }
 
     /**
@@ -55,7 +45,9 @@ public class Background extends World
     private void prepare()
     {
         jumper = new Jumper();
-        addObject(jumper, 23, 373);             
+        addObject(jumper, 0, 410);
+
+        addObject(new line(),0,Jumper.BOUNDARY);
 
         Platform platform = new Platform();
         addObject(platform, 66, 331);
@@ -72,6 +64,9 @@ public class Background extends World
         platform4.setLocation(363, 477);
         platform5.setLocation(383, 282);
         platform3.setLocation(667, 235);
-        jumper.setLocation(80, 479);
+
+        platform3.setLocation(537, 190);
+        jumper.setLocation(90, 479);
+        jumper.setLocation(93, 482);
     }
 }
