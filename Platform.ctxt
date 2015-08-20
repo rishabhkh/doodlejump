@@ -1,4 +1,8 @@
 #BlueJ class context
 comment0.params=
 comment0.target=void\ act()
-numComments=1
+comment1.params=jumper
+comment1.target=void\ scroll(Jumper)
+comment2.params=
+comment2.target=void\ removeIfAtEdge()
+numComments=3

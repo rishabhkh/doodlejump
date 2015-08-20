@@ -8,11 +8,13 @@ import greenfoot.*;
  */
 public class Background extends World
 {
+    public static int worldWidth = 300;
+    public static int worldHeight = 550; 
+    
     Jumper jumper;
-    private int NUMBER_OF_NEW_PLATFORMS=3;
-    private boolean justCrossed = true;
+    private int NUMBER_OF_NEW_PLATFORMS=1;
     
-    
+
     /**
      * Constructor for objects of class Background.
      * 
@@ -20,15 +22,14 @@ public class Background extends World
     public Background()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(800, 500, 1); 
-
+        super(worldWidth, worldHeight, 1); 
         prepare();
     }
 
     public void act()
     {
-        if(jumper.hold&&(Greenfoot.getRandomNumber(100)<10))
-            createPlatforms(2);
+        if(jumper.freezeFlag&&(Greenfoot.getRandomNumber(100)<20))
+            createPlatforms(NUMBER_OF_NEW_PLATFORMS);
     }
 
     /**
@@ -38,35 +39,25 @@ public class Background extends World
      */
     public void createPlatforms(int n){
         for(int i=1;i<=n;i++)
-            addObject(new Platform(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(40)-20)  ;  
-    }
-      
+            addObject(new SimplePlatform(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(40)-20);  
+    }      
 
     private void prepare()
     {
+
+        SimplePlatform simpleplatform = new SimplePlatform();
+        addObject(simpleplatform, 160, 459);
+        SimplePlatform simpleplatform2 = new SimplePlatform();
+        addObject(simpleplatform2, 299, 399);
+        SimplePlatform simpleplatform3 = new SimplePlatform();
+        addObject(simpleplatform3, 109, 350);
+        SimplePlatform simpleplatform4 = new SimplePlatform();
+        addObject(simpleplatform4, 285, 298);
+        SimplePlatform simpleplatform5 = new SimplePlatform();
+        addObject(simpleplatform5, 137, 226);
+        SimplePlatform simpleplatform6 = new SimplePlatform();
+        addObject(simpleplatform6, 301, 164);
         jumper = new Jumper();
-        addObject(jumper, 0, 410);
-
-        addObject(new line(),0,Jumper.BOUNDARY);
-
-        Platform platform = new Platform();
-        addObject(platform, 66, 331);
-        Platform platform2 = new Platform();
-        addObject(platform2, 160, 263);
-        Platform platform3 = new Platform();
-        addObject(platform3, 548, 183);
-        Platform platform4 = new Platform();
-        addObject(platform4, 420, 322);
-        Platform platform5 = new Platform();
-        addObject(platform5, 371, 153);
-        platform.setLocation(85, 520);
-        platform2.setLocation(201, 361);
-        platform4.setLocation(363, 477);
-        platform5.setLocation(383, 282);
-        platform3.setLocation(667, 235);
-
-        platform3.setLocation(537, 190);
-        jumper.setLocation(90, 479);
-        jumper.setLocation(93, 482);
+        addObject(jumper, 164, 432);
     }
 }
