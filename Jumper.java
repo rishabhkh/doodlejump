@@ -19,7 +19,8 @@ public class Jumper extends Actor
     public boolean freezeFlag;
 
     private int countYSpeed;
-    private int countXSpeed;  
+    private int countXSpeed;
+    private int countShoot;
 
     public Jumper(){
         ySpeed = INITIAL_JUMP_SPEED;
@@ -31,6 +32,7 @@ public class Jumper extends Actor
         checkAndMoveLeft();
         checkAndMoveRight();
         jump();
+        shoot();
     }
 
     public void checkAndMoveLeft(){        
@@ -133,10 +135,20 @@ public class Jumper extends Actor
             {
                 freezeFlag=false;
                 upFlag=false;
-                ySpeed =0;
-                //Speed=INITIAL_JUMP_SPEED;
+                ySpeed =0;                
             }
         }
 
     } 
+    
+    public void shoot(){
+       
+        if(Greenfoot.isKeyDown("space"))          
+        {   countShoot++;
+            if(countShoot == 1)
+                getWorld().addObject(new Bullet(),getX(),getY()-30);
+        }  
+        else
+            countShoot = 0;   
+    }
 }

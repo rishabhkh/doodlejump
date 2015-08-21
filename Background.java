@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class Background extends World
 {
-    public static int worldWidth = 300;
-    public static int worldHeight = 550; 
+    public static int worldWidth = 400;
+    public static int worldHeight = 600; 
     
     Jumper jumper;
     private int NUMBER_OF_NEW_PLATFORMS=1;
@@ -30,6 +30,7 @@ public class Background extends World
     {
         if(jumper.freezeFlag&&(Greenfoot.getRandomNumber(100)<20))
             createPlatforms(NUMBER_OF_NEW_PLATFORMS);
+        createMonster();
     }
 
     /**
@@ -42,6 +43,14 @@ public class Background extends World
             addObject(new SimplePlatform(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(40)-20);  
     }      
 
+    public void createMonster(){
+        if(Greenfoot.getRandomNumber(1000)<5)
+            addObject(new Bat(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(10));
+    }
+    
+    
+    
+    
     private void prepare()
     {
 
