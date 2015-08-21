@@ -9,6 +9,7 @@ import greenfoot.*;
 public class Bullet extends Actor
 {   
     private static int BULLET_SPEED = 20;
+    private boolean isActive = true;
     
     /**
      * Act - do whatever the Bullet wants to do. This method is called whenever
@@ -17,9 +18,10 @@ public class Bullet extends Actor
     public void act() 
     {
         setLocation(getX(),getY()-BULLET_SPEED);
-        if(isAtEdge())
-            getWorld().removeObject(this); 
         hitMonster();
+        if(isActive&&isAtEdge())
+            getWorld().removeObject(this); 
+       
     }
     
     
@@ -31,12 +33,9 @@ public class Bullet extends Actor
         if(b!=null)
         {   getWorld().removeObject(b);
             getWorld().removeObject(this);
+            isActive = false;
             
         }
-    
-    
-    
-    
     }
     
     

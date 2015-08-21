@@ -33,6 +33,12 @@ public class Jumper extends Actor
         checkAndMoveRight();
         jump();
         shoot();
+        if(isTouching(SpringPlatform.class)&&!upFlag)
+        {  // jumpHeight = platform.getY()-400;
+            jumpFlag = false;
+            countYSpeed=0;            
+            ySpeed = 60;
+        }  
     }
 
     public void checkAndMoveLeft(){        
@@ -40,7 +46,8 @@ public class Jumper extends Actor
         {   lFlag = true;
             rFlag=false;
             xSpeed=HORIZONTAL_SPEED;
-            setLocation(getX() - xSpeed , getY());            
+            setLocation(getX() - xSpeed , getY());
+            setImage("doodleL.png");
         }   
         else if(lFlag && xSpeed>0)
         {
@@ -58,7 +65,8 @@ public class Jumper extends Actor
         {   rFlag = true;
             lFlag = false;
             xSpeed=HORIZONTAL_SPEED;
-            setLocation(getX() + xSpeed , getY());            
+            setLocation(getX() + xSpeed , getY());
+            setImage("doodleR.png");
         } 
         else if(rFlag && xSpeed>0)
         {
@@ -140,15 +148,18 @@ public class Jumper extends Actor
         }
 
     } 
-    
+
     public void shoot(){
-       
+
         if(Greenfoot.isKeyDown("space"))          
         {   countShoot++;
             if(countShoot == 1)
                 getWorld().addObject(new Bullet(),getX(),getY()-30);
+            setImage("doodleS.png");
         }  
         else
-            countShoot = 0;   
+        {    countShoot = 0;
+            setImage("doodleR.png");
+        }
     }
 }

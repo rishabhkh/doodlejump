@@ -39,8 +39,18 @@ public class Background extends World
      * 
      */
     public void createPlatforms(int n){
+        int random = Greenfoot.getRandomNumber(100);
         for(int i=1;i<=n;i++)
-            addObject(new SimplePlatform(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(40)-20);  
+        {   
+            if(random<95)
+                addObject(new SimplePlatform(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(40)-20); 
+            else
+                addObject(new SpringPlatform(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(40)-20);
+            
+            
+            
+            
+        }
     }      
 
     public void createMonster(){
