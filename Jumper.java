@@ -1,5 +1,5 @@
 import greenfoot.*;
-
+import java.util.*;
 public class Jumper extends Actor
 {
     private static final int GRAVITY = 1;
@@ -17,7 +17,6 @@ public class Jumper extends Actor
     private boolean rFlag; 
     public boolean upFlag;
     public boolean freezeFlag;
-
     private int countYSpeed;
     private int countXSpeed;
     private int countShoot;
@@ -33,6 +32,8 @@ public class Jumper extends Actor
         checkAndMoveRight();
         jump();
         shoot();
+        //score_doodle();
+        IsGameOver();
         if(isTouching(SpringPlatform.class)&&!upFlag)
         {  // jumpHeight = platform.getY()-400;
             jumpFlag = false;
@@ -105,6 +106,8 @@ public class Jumper extends Actor
                 if(getY()<=BOUNDARY)
                 {
                     freezeFlag =true;
+                    score_doodle();
+                    
                 }
             }
             else if((!upFlag)&&jumpFlag)        
@@ -161,5 +164,33 @@ public class Jumper extends Actor
         {    countShoot = 0;
             setImage("doodleR.png");
         }
+    }
+    public void IsGameOver(){
+        //boolean gameo= false
+        if (isTouching(Monster.class) || getY() >590)
+        {
+            World w = getWorld();
+            Greenfoot.playSound("fall.wav");
+            w.addObject(new GameOver(),w.getWidth()/2,w.getHeight()/2);
+           // w.addObject(new Jumper(),w.getWidth()/2,w.getHeight()/2);
+            //k.gamever();
+            Greenfoot.stop();
+            //gameo = true;
+            //return gameo;
+        }
+    }
+    public void score_doodle(){
+        World w = getWorld();
+        List <Score> s = w.getObjects(Score.class); 
+        Score s1 = s.get(0);
+        int presentscore = s1.score;
+        s1.addScore();
+//         if(getY() == 200){
+//             while(s1.score < presentscore + 20){
+//                 
+//                 s1.addScore();
+//                 s1.update();
+//             }
+//         }
     }
 }
