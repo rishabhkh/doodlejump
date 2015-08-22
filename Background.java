@@ -8,13 +8,13 @@ import greenfoot.*;
  */
 public class Background extends World
 {
-    public static int worldWidth = 400;
+    public static int worldWidth = 500;
     public static int worldHeight = 600; 
     
     Jumper jumper;
     private int NUMBER_OF_NEW_PLATFORMS=1;
     
-
+    
     /**
      * Constructor for objects of class Background.
      * 
@@ -63,7 +63,7 @@ public class Background extends World
     
     private void prepare()
     {
-
+        //addObject(new Score(),40,20);
         SimplePlatform simpleplatform = new SimplePlatform();
         addObject(simpleplatform, 160, 459);
         SimplePlatform simpleplatform2 = new SimplePlatform();
@@ -78,5 +78,7 @@ public class Background extends World
         addObject(simpleplatform6, 301, 164);
         jumper = new Jumper();
         addObject(jumper, 164, 432);
+        Score score = new Score();
+        addObject(score, 129, 64);
     }
 }
