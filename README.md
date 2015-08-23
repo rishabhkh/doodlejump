@@ -4,4 +4,4 @@
 
 ![Gameplay](images/intro0.jpg "Gameplay")
 
-![Gameover](images/screenshot2.jpg "Gameover")
+![Gameover](images/screenshot2.png "Gameover")
