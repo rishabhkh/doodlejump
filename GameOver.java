@@ -1,5 +1,5 @@
 import greenfoot.*;
-//import java.awt.*;
+import java.awt.*;
 /**
  * Write a description of class GameOver here.
  * 
@@ -8,17 +8,15 @@ import greenfoot.*;
  */
 public class GameOver extends Actor
 {
-    /**
-     * Act - do whatever the GameOver wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    //public void act()
-    //{
-    //    gamever();
-    //}
-//     public void GameOver()
-//     {
-//         setImage(new GreenfootImage("HAHHAHH",50,Color.WHITE,Color.BLACK));
-//         // Add your action code here.
-//     }    
+       
+    public GameOver(int score){        
+        GreenfootImage img = getImage();
+        
+        img.setColor(Color.BLACK);        
+        Font font = new Font("Serif",Font.PLAIN,30);
+        img.setFont(font);
+        
+        img.drawString(score+"",264,406);
+    }   
+       
 }

@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Bullet extends Actor
 {   
-    private static int BULLET_SPEED = 20;
+    private static final int BULLET_SPEED = 20;
     private boolean isActive = true;
     
     /**
@@ -19,14 +19,8 @@ public class Bullet extends Actor
     {
         setLocation(getX(),getY()-BULLET_SPEED);
         hitMonster();
-        if(isActive&&isAtEdge())
-            getWorld().removeObject(this); 
-       
+        checkAndRemove();       
     }
-    
-    
-    
-    
     public void hitMonster() 
     {
         Bat b = (Bat)getOneIntersectingObject(Bat.class);
@@ -34,12 +28,11 @@ public class Bullet extends Actor
         {   getWorld().removeObject(b);
             getWorld().removeObject(this);
             isActive = false;
-            
         }
     }
-    
-    
-    
-    
-    
+    public void checkAndRemove()
+    {
+        if(isActive&&isAtEdge())
+            getWorld().removeObject(this);
+    }
 }

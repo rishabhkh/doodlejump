@@ -7,23 +7,18 @@ import greenfoot.*;
  * @version (a version number or a date)
  */
 public class Background extends World
-{
-    public static int worldWidth = 500;
-    public static int worldHeight = 600; 
+{   
+    public static final int NUMBER_OF_NEW_PLATFORMS = 1;
+    public static final int WORLD_WIDTH = 500;
+    public static final int WORLD_HEIGHT = 600; 
     
-    Jumper jumper;
-    private int NUMBER_OF_NEW_PLATFORMS=1;
+    public Jumper jumper;
+    public Score score;
     
-    
-    /**
-     * Constructor for objects of class Background.
-     * 
-     */
     public Background()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(worldWidth, worldHeight, 1); 
-        prepare();
+        super(WORLD_WIDTH, WORLD_HEIGHT, 1);        
+        prepare();        
     }
 
     public void act()
@@ -32,38 +27,29 @@ public class Background extends World
             createPlatforms(NUMBER_OF_NEW_PLATFORMS);
         createMonster();
     }
-
-    /**
-     * Prepare the world for the start of the program. That is: create the initial
-     * objects and add them to the world.
-     * 
-     */
+    
     public void createPlatforms(int n){
         int random = Greenfoot.getRandomNumber(100);
         for(int i=1;i<=n;i++)
         {   
-            if(random<95)
-                addObject(new SimplePlatform(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(40)-20); 
+            if(random<85)
+                addObject(new SimplePlatform(), Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(40)-20); 
+            else if (random<90)
+                addObject(new SpringPlatform(), Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(40)-20);
+            else if(random<95)
+                addObject(new BrittlePlatform(), Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(40)-20);
             else
-                addObject(new SpringPlatform(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(40)-20);
-            
-            
-            
-            
+                addObject(new MovingPlatform(), Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(40)-20);
         }
     }      
 
     public void createMonster(){
         if(Greenfoot.getRandomNumber(1000)<5)
-            addObject(new Bat(), Greenfoot.getRandomNumber(worldWidth), Greenfoot.getRandomNumber(10));
-    }
-    
-    
-    
-    
+            addObject(new Bat(), Greenfoot.getRandomNumber(WORLD_WIDTH), 0);
+    }   
+       
     private void prepare()
     {
-        //addObject(new Score(),40,20);
         SimplePlatform simpleplatform = new SimplePlatform();
         addObject(simpleplatform, 160, 459);
         SimplePlatform simpleplatform2 = new SimplePlatform();
@@ -78,7 +64,7 @@ public class Background extends World
         addObject(simpleplatform6, 301, 164);
         jumper = new Jumper();
         addObject(jumper, 164, 432);
-        Score score = new Score();
+        score = new Score();
         addObject(score, 129, 64);
     }
 }
