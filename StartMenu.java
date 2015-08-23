@@ -10,11 +10,16 @@ public class StartMenu extends World
 {
     public StartMenu()
     {    
-         super(Background.WORLD_WIDTH, Background.WORLD_HEIGHT, 1); 
+        super(Background.WORLD_WIDTH, Background.WORLD_HEIGHT, 1); 
     }
-    
+
     public void act()
     {   
+        checkIfPlayClicked();
+    }
+
+    private void checkIfPlayClicked()
+    {
         MouseInfo mInfo = Greenfoot.getMouseInfo();
         if(mInfo!=null&&Greenfoot.mouseClicked(this))        
         {   
@@ -22,9 +27,14 @@ public class StartMenu extends World
             int y=mInfo.getY();            
             if(x<=200&&x>=70&&y<=207&&y>=159)
             {
-                Background back = new Background();
-                Greenfoot.setWorld(back);
+               launchBackground(); 
             }
         }
+    }
+    
+    private void launchBackground()
+    {
+        Background back = new Background();
+        Greenfoot.setWorld(back); 
     }
 }

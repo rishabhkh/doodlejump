@@ -13,15 +13,19 @@ public class SpringPlatform extends Platform
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
-    {   Jumper j = ((Background)getWorld()).jumper;
+    {   
         scroll(((Background)getWorld()).jumper);
-        
+        checkAndBoost();        
+        removeIfAtEdge();
+    }  
+    
+    public void checkAndBoost()
+    {   Jumper j = ((Background)getWorld()).jumper;
         if(isTouching(Jumper.class)&&!j.upFlag)
         {  
             j.jumpFlag = false;
             j.countYSpeed=0;            
             j.ySpeed = 45;
         }
-        removeIfAtEdge();
-    }    
+    }
 }

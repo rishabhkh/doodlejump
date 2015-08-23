@@ -35,7 +35,7 @@ public class BrittlePlatform extends Platform
         }
     }
     
-    public void checkAndGoDown()
+    private void checkAndGoDown()
     {
         if(flagGoDown)
             setLocation(getX(),getY()+30);

@@ -16,7 +16,7 @@ public class MovingPlatform extends Platform
         removeIfAtEdge();
     }
     
-    public void moveHorizontal(){
+    private void moveHorizontal(){
         if(moveRight)
         {   move(5);
             if(getX()>=470)

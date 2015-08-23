@@ -21,7 +21,7 @@ public class Bullet extends Actor
         hitMonster();
         checkAndRemove();       
     }
-    public void hitMonster() 
+    private void hitMonster() 
     {
         Bat b = (Bat)getOneIntersectingObject(Bat.class);
         if(b!=null)
@@ -30,7 +30,7 @@ public class Bullet extends Actor
             isActive = false;
         }
     }
-    public void checkAndRemove()
+    private void checkAndRemove()
     {
         if(isActive&&isAtEdge())
             getWorld().removeObject(this);
